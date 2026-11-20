@@ -1606,9 +1606,26 @@ img { max-width: 100%; height: auto; display: block; }
 .lp-accessories-section { background: #f8faf8; margin-left: -32px; margin-right: -32px; padding-left: 32px; padding-right: 32px; }
 .lp-accessory-grid { grid-template-columns: repeat(3, 1fr); }
 .lp-accessory-grid > div { background: #fff; border: 1px solid #d6e3dd; padding: 20px; min-height: 190px; }
+.lp-accessory-grid > div { background-repeat: no-repeat; background-position: 20px 20px; background-size: 88px 88px; padding-left: 126px; min-height: 128px; }
+.lp-accessory-grid > div:nth-child(1) { background-image: url('/images/accessories/lithium-upgrade-kit.png'); }
+.lp-accessory-grid > div:nth-child(2) { background-image: url('/images/accessories/getinge-9100-trolley-attachment-hitch.png'); }
+.lp-accessory-grid > div:nth-child(3) { background-image: url('/images/accessories/electric-adjustable-hitch-110-push-button.png'); }
+.lp-accessory-grid > div:nth-child(4) { background-image: url('/images/accessories/adjustable-hitch-110-universal-jaw.png'); }
+.lp-accessory-grid > div:nth-child(5) { background-image: url('/images/accessories/22mm-pin-hitch-coupling.png'); }
+.lp-accessory-grid > div:nth-child(6) { background-image: url('/images/accessories/seat.png'); }
+.lp-accessory-grid > div:nth-child(7) { background-image: url('/images/accessories/strobe-lights.png'); }
+.lp-accessory-grid > div:nth-child(8) { background-image: url('/images/accessories/buzzer-pulsating-warning-signal.png'); }
 .lp-accessory-code { display: block; color: #0e766f; font: 10px var(--font-family); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 10px; }
 .lp-accessory-grid strong { display: block; color: #173e43; font-size: 15px; line-height: 1.35; }
 .lp-accessory-grid p { color: #61746f; font-size: 13px; line-height: 1.6; }
 .lp-literature-link { display: inline-flex; gap: 12px; margin-top: 28px; color: #0e766f; font-size: 13px; font-weight: 800; text-decoration: underline; }
+.lp-accessory-gallery { background: #eef6f3; margin-left: -32px; margin-right: -32px; padding-left: 32px; padding-right: 32px; }
+.lp-accessory-gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
+.lp-accessory-gallery-grid figure { margin: 0; background: #fff; border: 1px solid #d6e3dd; padding: 14px; }
+.lp-accessory-gallery-grid img { width: 100%; aspect-ratio: 1 / 1; object-fit: contain; background: #f5f7f6; }
+.lp-accessory-gallery-grid figcaption { display: flex; flex-direction: column; gap: 4px; padding-top: 12px; }
+.lp-accessory-gallery-grid figcaption strong { color: #173e43; font-size: 14px; }
+.lp-accessory-gallery-grid figcaption span { color: #0e766f; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
 @media (max-width: 900px) { .lp-transport-grid, .lp-accessory-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 520px) { .lp-transport-grid, .lp-accessory-grid { grid-template-columns: 1fr; } .lp-compatibility-note { display: block; } .lp-compatibility-note span { display: block; margin-top: 8px; } .lp-accessories-section { margin-left: -20px; margin-right: -20px; padding-left: 20px; padding-right: 20px; } }
+@media (max-width: 900px) { .lp-accessory-gallery-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .lp-transport-grid, .lp-accessory-grid, .lp-accessory-gallery-grid { grid-template-columns: 1fr; } .lp-compatibility-note { display: block; } .lp-compatibility-note span { display: block; margin-top: 8px; } .lp-accessories-section, .lp-accessory-gallery { margin-left: -20px; margin-right: -20px; padding-left: 20px; padding-right: 20px; } }
