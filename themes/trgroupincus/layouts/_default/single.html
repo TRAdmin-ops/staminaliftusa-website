@@ -1,0 +1,172 @@
+{{ define "head-extra" }}
+{{ if .Params.sku }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": {{ .Title | jsonify }},
+  "description": {{ .Description | jsonify }},
+  "sku": {{ .Params.sku | jsonify }},
+  "brand": { "@type": "Brand", "name": {{ with .Params.brand }}{{ . | jsonify }}{{ else }}"TR Equipment"{{ end }} },
+  {{ with .Params.image }}"image": {{ absURL . | jsonify }},{{ end }}
+  "offers": {
+    "@type": "Offer",
+    "availability": "https://schema.org/InStoreOnly",
+    "seller": { "@type": "Organization", "name": "TR Group, Inc." }
+  }
+}
+</script>
+{{ end }}
+{{ end }}
+
+{{ define "main" }}
+
+<section class="page-hero">
+  <div class="container">
+    {{ with .Parent }}<p class="breadcrumb"><a href="/products/">Products</a> &rsaquo; <a href="{{ .RelPermalink }}">{{ .Title }}</a> &rsaquo;</p>{{ end }}
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p class="page-hero-sub">{{ . }}</p>{{ end }}
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+
+    {{ if or .Params.image .Params.images }}
+    <div class="product-layout">
+      <div class="product-gallery">
+        {{ with .Params.image }}
+        <img class="product-main-image" src="{{ . }}" alt="{{ $.Title }}">
+        {{ end }}
+        {{ if .Params.images }}
+        <div class="product-thumbs">
+          {{ with .Params.image }}
+          <img src="{{ . }}" alt="{{ $.Title }}" class="product-thumb">
+          {{ end }}
+          {{ range $.Params.images }}
+          <img src="{{ . }}" alt="{{ $.Title }} detail" class="product-thumb">
+          {{ end }}
+        </div>
+        {{ end }}
+      </div>
+      <div class="product-info">
+        {{ with .Params.brand_logo }}<img src="{{ . }}" alt="{{ $.Params.brand }}" style="height:36px;width:auto;margin-bottom:8px;opacity:0.85;">{{ end }}
+        {{ template "product-specs" . }}
+        <div class="prose">{{ .Content }}</div>
+        <div class="product-actions">
+          <a href="/contact/" class="btn btn-primary">Find a Dealer</a>
+          <a href="/resources/patient-hygiene-equipment-guide/" class="btn btn-secondary">Buyer's Guide</a>
+        </div>
+        {{ template "product-downloads" . }}
+      </div>
+    </div>
+    {{ else }}
+    <div class="prose">
+      {{ template "product-specs" . }}
+      {{ .Content }}
+      {{ if .Params.category }}
+      <div class="page-actions">
+        <a href="/contact/" class="btn btn-primary">Request a Quote</a>
+        <a href="/resources/patient-hygiene-equipment-guide/" class="btn btn-secondary">Buyer's Guide</a>
+      </div>
+      {{ template "product-downloads" . }}
+      {{ end }}
+    </div>
+    {{ end }}
+
+  </div>
+</section>
+
+{{ end }}
+
+{{ define "product-downloads" }}
+{{ if or .Params.leaflet .Params.ifu .Params.spec_sheet }}
+<div class="product-downloads">
+  <h3>Downloads</h3>
+  <ul class="download-list">
+    {{ with .Params.leaflet }}
+    <li><a href="{{ . }}" target="_blank" class="download-link">
+      <span class="download-icon">📄</span> Product Leaflet
+    </a></li>
+    {{ end }}
+    {{ with .Params.ifu }}
+    <li><a href="{{ . }}" target="_blank" class="download-link">
+      <span class="download-icon">📋</span> Instructions for Use (IFU)
+    </a></li>
+    {{ end }}
+    {{ with .Params.spec_sheet }}
+    <li><a href="{{ . }}" target="_blank" class="download-link">
+      <span class="download-icon">📐</span> Technical Specification Sheet
+    </a></li>
+    {{ end }}
+  </ul>
+</div>
+{{ end }}
+{{ end }}
+
+{{ define "product-specs" }}
+{{ if or .Params.capacity_lbs .Params.capacity_kg .Params.weight_lbs .Params.weight_kg .Params.length .Params.width .Params.height .Params.material .Params.features .Params.sku }}
+<div class="specs-table">
+  <h2>Specifications</h2>
+  <table>
+    <tbody>
+      {{ with .Params.push_pull_lbs }}
+      <tr><th>Push/Pull Capacity</th><td>{{ . }} lbs{{ with $.Params.push_pull_kg }} ({{ . }} kg){{ end }}</td></tr>
+      {{ else }}{{ with .Params.push_pull_kg }}
+      <tr><th>Push/Pull Capacity</th><td>{{ mul . 2.2046 | lang.FormatNumber 0 }} lbs ({{ . }} kg)</td></tr>
+      {{ end }}{{ end }}
+      {{ with .Params.lift_lbs }}
+      <tr><th>Lift Capacity</th><td>{{ . }} lbs{{ with $.Params.lift_kg }} ({{ . }} kg){{ end }}</td></tr>
+      {{ else }}{{ with .Params.lift_kg }}
+      <tr><th>Lift Capacity</th><td>{{ mul . 2.2046 | lang.FormatNumber 0 }} lbs ({{ . }} kg)</td></tr>
+      {{ end }}{{ end }}
+      {{ with .Params.capacity_lbs }}
+      <tr><th>Max. User Weight</th><td>{{ . }} lbs{{ with $.Params.capacity_kg }} ({{ . }} kg){{ end }}</td></tr>
+      {{ else }}{{ with .Params.capacity_kg }}
+      <tr><th>Max. User Weight</th><td>{{ mul . 2.2046 | lang.FormatNumber 0 }} lbs ({{ . }} kg)</td></tr>
+      {{ end }}{{ end }}
+      {{ with .Params.max_gradient }}
+      <tr><th>Max. Operating Gradient</th><td>{{ . }}</td></tr>
+      {{ end }}
+      {{ with .Params.weight_lbs }}
+      <tr><th>Product Weight</th><td>{{ . }} lbs{{ with $.Params.weight_kg }} ({{ . }} kg){{ end }}</td></tr>
+      {{ else }}{{ with .Params.weight_kg }}
+      <tr><th>Product Weight</th><td>{{ mul . 2.2046 | lang.FormatNumber 0 }} lbs ({{ . }} kg)</td></tr>
+      {{ end }}{{ end }}
+      {{ with .Params.length }}
+      <tr><th>Length</th><td>{{ . }}</td></tr>
+      {{ end }}
+      {{ with .Params.width }}
+      <tr><th>Width</th><td>{{ . }}</td></tr>
+      {{ end }}
+      {{ with .Params.height }}
+      <tr><th>Height / Adjustment Range</th><td>{{ . }}</td></tr>
+      {{ end }}
+      {{ with .Params.mattress_size }}
+      <tr><th>Mattress / Surface Size</th><td>{{ . }}</td></tr>
+      {{ end }}
+      {{ with .Params.tilt_range }}
+      <tr><th>Tilt Range</th><td>{{ . }}</td></tr>
+      {{ end }}
+      {{ with .Params.drive_type }}
+      <tr><th>Drive / Adjustment Type</th><td>{{ . }}</td></tr>
+      {{ end }}
+      {{ with .Params.material }}
+      <tr><th>Frame Material</th><td>{{ . }}</td></tr>
+      {{ end }}
+      {{ with .Params.sku }}
+      <tr><th>Model / SKU</th><td>{{ . }}</td></tr>
+      {{ end }}
+    </tbody>
+  </table>
+  {{ with .Params.features }}
+  <h3>Key Features</h3>
+  <ul class="feature-list">
+    {{ range . }}
+    <li>{{ . }}</li>
+    {{ end }}
+  </ul>
+  {{ end }}
+</div>
+{{ end }}
+{{ end }}

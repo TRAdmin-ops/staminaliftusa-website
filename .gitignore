@@ -1,0 +1,20 @@
+# Hugo build output
+public/
+resources/_gen/
+
+# Hugo cache
+.hugo_build.lock
+hugo-server.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Superpowers brainstorm sessions
+.superpowers/
+
+# Local feature worktrees
+.worktrees/
+
+# Generated customer-map handoff bundles
+dist/

@@ -1,0 +1,26 @@
+{{ define "main" }}
+
+<section class="page-hero">
+  <div class="container">
+    <p class="breadcrumb"><a href="/resources/">Resources</a> &rsaquo;</p>
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p class="page-hero-sub">{{ . }}</p>{{ end }}
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="page-content prose">
+      {{ .Content }}
+    </div>
+  </div>
+</section>
+
+<section class="cta-strip">
+  <div class="container">
+    <p>Need help finding an authorized dealer? <strong>We'll connect you with the right partner.</strong></p>
+    <a href="/contact/" class="btn btn-white">Find a Dealer</a>
+  </div>
+</section>
+
+{{ end }}

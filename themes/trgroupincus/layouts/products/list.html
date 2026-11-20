@@ -1,0 +1,211 @@
+{{ define "main" }}
+
+<section class="page-hero">
+  <div class="container">
+    {{ if and .Parent (not .IsHome) }}
+    <p class="breadcrumb"><a href="/products/">Products</a> &rsaquo;</p>
+    {{ end }}
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p class="page-hero-sub">{{ . }}</p>{{ end }}
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    {{ with .Content }}<div class="page-content prose" style="margin-bottom:40px;">{{ . }}</div>{{ end }}
+
+    {{ if and .Pages (ne .Title "Products") }}
+    <div class="card-grid">
+      {{ range .Pages }}
+      <a class="product-card" href="{{ .RelPermalink }}">
+        {{ with .Params.image }}
+        <div class="product-card-image">
+          <img src="{{ . }}" alt="{{ $.Title }}">
+        </div>
+        {{ end }}
+        <div class="product-card-body">
+          <h3>{{ .Title }}</h3>
+          {{ with .Description }}<p>{{ . }}</p>{{ else }}{{ with .Summary }}<p>{{ . | truncate 120 }}</p>{{ end }}{{ end }}
+          {{ with .Params.capacity_lbs }}<p style="font-size:0.85rem;color:var(--color-text-muted);margin-top:8px;">Capacity: {{ . }} lbs</p>{{ end }}
+        </div>
+        <div class="product-card-footer">
+          <span class="btn-link">View Details &rarr;</span>
+        </div>
+      </a>
+      {{ end }}
+      {{ if eq .RelPermalink "/products/shower-chairs/" }}
+      <a class="product-card" href="/products/rebotec/">
+        <div class="product-card-image" style="background:#f8f8f8;">
+          <img src="/images/brands/rebotec-logo.png" alt="Rebotec" style="object-fit:contain;padding:32px;">
+        </div>
+        <div class="product-card-body">
+          <h3>Rebotec</h3>
+          <p>German-engineered shower chairs, commode chairs, pediatric walkers, and crutches. Full catalog at our dedicated Rebotec site.</p>
+        </div>
+        <div class="product-card-footer">
+          <span class="btn-link">Learn more &rarr;</span>
+        </div>
+      </a>
+      {{ end }}
+    </div>
+    {{ end }}
+
+    {{ if eq .RelPermalink "/products/shower-trolleys/" }}
+    <div class="comparison-table-wrap" style="margin-top:64px;">
+      <h2 style="margin-bottom:8px;">Shower Trolley Model Comparison</h2>
+      <p style="color:var(--color-text-muted);margin-bottom:24px;">All six TR Equipment shower trolley models side by side — use this table to identify the right specification for your facility, patient population, and room constraints.</p>
+      <div style="overflow-x:auto;">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th><a href="/products/shower-trolleys/tr-2000/">TR-2000 Mod 21</a></th>
+            <th><a href="/products/shower-trolleys/tr-3000/">TR-3000 Mod 21</a></th>
+            <th><a href="/products/shower-trolleys/tr-3200/">TR-3200</a></th>
+            <th><a href="/products/shower-trolleys/tr-4200-bariatric/">TR-4200 Atlas Junior</a></th>
+            <th><a href="/products/shower-trolleys/tr-4000-bariatric/">TR-4000 Atlas</a></th>
+            <th><a href="/products/shower-trolleys/tr-4000w-wide/">TR-4000-W Atlas Wide</a></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Capacity</th>
+            <td><strong>440 lbs</strong> (200 kg)</td>
+            <td><strong>440 lbs</strong> (200 kg)</td>
+            <td><strong>507 lbs</strong> (230 kg)</td>
+            <td><strong>595 lbs</strong> (270 kg)</td>
+            <td><strong>992 lbs</strong> (450 kg)</td>
+            <td><strong>992 lbs</strong> (450 kg)</td>
+          </tr>
+          <tr>
+            <th>Height Adjustment</th>
+            <td>Foot-operated hydraulic</td>
+            <td>Electric (battery)</td>
+            <td>Electric (battery)</td>
+            <td>Electric (battery)</td>
+            <td>Electric (battery)</td>
+            <td>Electric (battery)</td>
+          </tr>
+          <tr>
+            <th>Tilt</th>
+            <td>Manual (±4°)</td>
+            <td>Manual (±4°)</td>
+            <td>Electric (±7°)</td>
+            <td>Electric (±7°)</td>
+            <td>Electric (±7°)</td>
+            <td>Electric (±7°)</td>
+          </tr>
+          <tr>
+            <th>Transfer Configuration</th>
+            <td>Side mount</td>
+            <td>Side mount</td>
+            <td>Side mount</td>
+            <td>Center mount</td>
+            <td>Center mount</td>
+            <td>Center mount</td>
+          </tr>
+          <tr>
+            <th>Height Range</th>
+            <td>24–35 in</td>
+            <td>24–35 in</td>
+            <td>20–35 in</td>
+            <td>21–33 in</td>
+            <td>21–33 in</td>
+            <td>21–33 in</td>
+          </tr>
+          <tr>
+            <th>External Width</th>
+            <td>25 in</td>
+            <td>25 in</td>
+            <td>27–31 in</td>
+            <td>29 in</td>
+            <td>36 in</td>
+            <td>42 in</td>
+          </tr>
+          <tr>
+            <th>Mattress Width</th>
+            <td>23 in</td>
+            <td>23 in</td>
+            <td>25–28 in</td>
+            <td>24 in</td>
+            <td>31 in</td>
+            <td>37 in</td>
+          </tr>
+          <tr>
+            <th>External Length</th>
+            <td>75 in (4 sizes)</td>
+            <td>75 in (3 sizes)</td>
+            <td>77–85 in (2 sizes)</td>
+            <td>85 in</td>
+            <td>87 in</td>
+            <td>87 in</td>
+          </tr>
+          <tr>
+            <th>Mattress Length</th>
+            <td>68 in (4 sizes)</td>
+            <td>68 in (3 sizes)</td>
+            <td>70–78 in (2 sizes)</td>
+            <td>78 in</td>
+            <td>78 in</td>
+            <td>78 in</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      <p style="font-size:0.85rem;color:var(--color-text-muted);margin-top:16px;">All models manufactured in Sweden by TR Equipment. Contact an authorized dealer for current configurations and availability.</p>
+      <p style="font-size:0.85rem;color:var(--color-text-muted);margin-top:8px;"><strong>Transfer Configuration:</strong> Side-mount models (TR-2000, TR-3000, TR-3200) position the support columns off-center, allowing the trolley mattress to overlap the bed edge during lateral patient transfers — reducing the gap and improving transfer safety. Center-mount models (TR-4200, TR-4000, TR-4000-W) use a centered undercarriage optimized for bariatric load distribution.</p>
+    </div>
+    {{ end }}
+
+    <!-- Top-level products hub: show category cards -->
+    {{ if eq .Title "Products" }}
+    <div class="card-grid categories" style="margin-top:40px;">
+      <a class="category-card" href="/products/shower-trolleys/">
+        <div class="card-icon"><img src="/images/products/tr-3000.jpg" alt="Shower Trolleys"></div>
+        <h3>Shower Trolleys</h3>
+        <p>6 models — foot-operated, electric, standard and bariatric up to 992 lbs (450 kg). Swedish-engineered.</p>
+        <span class="card-arrow">View &rarr;</span>
+      </a>
+      <a class="category-card" href="/products/shower-chairs/">
+        <div class="card-icon"><img src="/images/products/tr-1000.jpg" alt="Shower Chairs"></div>
+        <h3>Shower Chairs &amp; Accessories</h3>
+        <p>TR-1000 shower chair, TR-2810 shower panel, and Rebotec commode chairs</p>
+        <span class="card-arrow">View &rarr;</span>
+      </a>
+      <a class="category-card" href="/products/bathing-systems/">
+        <div class="card-icon"><img src="/images/products/tr-900.jpg" alt="Bathing Systems"></div>
+        <h3>Bathing Systems</h3>
+        <p>7 models — height-adjustable bathtubs, therapeutic and specialty configurations</p>
+        <span class="card-arrow">View &rarr;</span>
+      </a>
+      <a class="category-card" href="/products/patient-lifts/">
+        <div class="card-icon"><img src="/images/products/tr9650-chair-lift.jpg" alt="Patient Lifts"></div>
+        <h3>Patient Lifts</h3>
+        <p>TR9650 — chair, stretcher, and combi configurations. Foot-operated, 330 lbs (150 kg).</p>
+        <span class="card-arrow">View &rarr;</span>
+      </a>
+      <a class="category-card" href="/products/staminalift/">
+        <div class="card-icon"><img src="/images/products/ts-6000.png" alt="Patient Transport"></div>
+        <h3>Patient Transport</h3>
+        <p>FDA-registered hospital bed movers — TS-5000 (1,323 lbs) and TS-6000 bariatric (1,984 lbs)</p>
+        <span class="card-arrow">View &rarr;</span>
+      </a>
+      <a class="category-card" href="/products/walkers/">
+        <div class="card-icon"><img src="/images/products/bure-rise-go.png" alt="Walkers & Gait Trainers"></div>
+        <h3>Walkers &amp; Gait Trainers</h3>
+        <p>Bure Rise &amp; Go DB, Bure XL, and Standtall — Swedish-engineered walking and standing aids</p>
+        <span class="card-arrow">View &rarr;</span>
+      </a>
+    </div>
+    {{ end }}
+  </div>
+</section>
+
+<section class="cta-strip">
+  <div class="container">
+    <p>Looking for an authorized dealer? <strong>We can help you find one.</strong></p>
+    <a href="/contact/" class="btn btn-white">Find a Dealer</a>
+  </div>
+</section>
+
+{{ end }}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+  <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+  {{ block "head-extra" . }}{{ end }}
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YZFSG55JT3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-YZFSG55JT3');
+    gtag('config', 'AW-17076605125');
+  </script>
+</head>
+<body>
+
+  {{ block "site-header" . }}
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="site-logo" href="/">
+        <img src="/images/tr-group-logo.png" alt="TR Group Inc." onerror="this.style.display='none'">
+        <div class="logo-text">TR Group Inc.<span>North American Distributor</span></div>
+      </a>
+      <nav class="site-nav" id="site-nav">
+        <ul>
+          {{ range .Site.Menus.main }}
+          <li><a href="{{ .URL }}" {{ if $.IsMenuCurrent "main" . }}class="active"{{ end }}>{{ .Name }}</a></li>
+          {{ end }}
+        </ul>
+      </nav>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+  {{ end }}
+
+  <main>
+    {{ block "main" . }}{{ end }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <strong>TR Group, Inc.</strong>
+          <p>North American distributor for TR Equipment, Rebotec, and Bure — European rehabilitation and patient hygiene equipment.</p>
+          <p>{{ .Site.Params.contact_address }}</p>
+          <p><a href="tel:{{ .Site.Params.contact_phone }}">{{ .Site.Params.contact_phone }}</a></p>
+          <p><a href="mailto:{{ .Site.Params.contact_email }}">{{ .Site.Params.contact_email }}</a></p>
+        </div>
+        <div class="footer-nav">
+          <h4>Products</h4>
+          <ul>
+            <li><a href="/products/shower-trolleys/">Shower Trolleys</a></li>
+            <li><a href="/products/shower-chairs/">Shower Chairs</a></li>
+            <li><a href="/products/bathing-systems/">Bathing Systems</a></li>
+            <li><a href="/products/patient-lifts/">Patient Lifts</a></li>
+            <li><a href="/products/staminalift/">StaminaLift</a></li>
+            <li><a href="/products/walkers/">Walkers</a></li>
+            <li><a href="/products/rebotec/">Rebotec</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav">
+          <h4>Company</h4>
+          <ul>
+            {{ range .Site.Menus.main }}
+            <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+            {{ end }}
+            <li><a href="/privacy-policy/">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; {{ now.Year }} TR Group, Inc. All rights reserved.</p>
+        <p>TR Equipment products are manufactured in Sweden. Rebotec products are manufactured in Germany.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/nav.js"></script>
+</body>
+</html>

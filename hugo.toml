@@ -1,0 +1,39 @@
+baseURL = "https://staminaliftusa.com/"
+languageCode = "en-us"
+title = "StaminaLift USA | Powered Hospital Bed Movers"
+theme = "trgroupincus"
+enableRobotsTXT = true
+enableGitInfo = false
+
+[params]
+  description = "Single-operator, joystick-controlled hospital bed movers for safer patient transport."
+  tagline = "Powered patient transport for healthcare teams"
+  contact_email = "information@trequipment.com"
+  contact_phone = "1.800.752.6900"
+  contact_address = "1643 N Alpine Rd, Ste 104-803, Rockford, IL 61107"
+  formspree_id = "mgoronna"
+  google_ads_form_conversion_send_to = "AW-17076605125/uS4uCObAz6kcEMWh4c4_"
+  google_ads_partner_conversion_send_to = "AW-17076605125/HaBsCLD2x7kcEMWh4c4_"
+
+[menu]
+  [[menu.main]]
+    name = "Products"
+    url = "/products/"
+    weight = 1
+  [[menu.main]]
+    name = "Resources"
+    url = "/resources/"
+    weight = 2
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 3
+  [[menu.main]]
+    name = "Contact"
+    url = "/contact/"
+    weight = 4
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

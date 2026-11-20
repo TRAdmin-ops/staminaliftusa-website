@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ .Title }} | TR Group Inc.</title>
+  <meta name="description" content="{{ .Description }}">
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YZFSG55JT3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-YZFSG55JT3');
+    gtag('config', 'AW-17076605125');
+    gtag('event', 'lp_form_thank_you', {
+      'event_category': 'lead',
+      'event_label': new URLSearchParams(window.location.search).get('product') || 'Landing page inquiry'
+    });
+    {{ with .Site.Params.google_ads_form_conversion_send_to }}
+    gtag('event', 'conversion', {'send_to': '{{ . }}'});
+    {{ end }}
+  </script>
+</head>
+<body>
+  <header class="lp-header">
+    <a class="lp-logo" href="/">
+      <div class="lp-logo-text">
+        TR Group Inc.<span>North American Distributor</span>
+      </div>
+    </a>
+    <div class="lp-header-right">
+      <a class="lp-header-phone" href="tel:+18007526900">{{ .Site.Params.contact_phone }}</a>
+    </div>
+  </header>
+
+  <main class="lp-final-cta" style="min-height:55vh;display:flex;flex-direction:column;justify-content:center;">
+    <h1>Thank you.</h1>
+    <p>Your inquiry has been submitted. TR Group will review it and route it to the right distributor or support path.</p>
+    <a href="/" class="btn-lp">Return to TR Group</a>
+  </main>
+
+  <footer class="lp-footer">
+    <span>&copy; {{ now.Year }} TR Group, Inc. All rights reserved.</span>
+    <span>
+      <a href="/privacy-policy/">Privacy Policy</a> &nbsp;&bull;&nbsp;
+      <a href="/contact/">Contact</a>
+    </span>
+  </footer>
+</body>
+</html>

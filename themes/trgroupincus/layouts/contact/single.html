@@ -1,0 +1,125 @@
+{{ define "site-header" }}
+<header class="header-simplified">
+  <div class="container header-inner">
+    <a class="site-logo" href="/">
+      <img src="/images/tr-group-logo.png" alt="TR Group Inc." onerror="this.style.display='none'">
+      <div class="logo-text">TR Group Inc.<span>North American Distributor</span></div>
+    </a>
+  </div>
+</header>
+{{ end }}
+
+{{ define "main" }}
+
+<section class="section">
+  <div class="container">
+    <div class="contact-landing">
+
+      <div class="contact-landing-header">
+        <h1>Find a Dealer or Become a Partner</h1>
+        <p>TR Group, Inc. sells exclusively through authorized dealer partners. Whether you're looking for a dealer near you or interested in becoming one, get in touch and we'll respond within one business day.</p>
+      </div>
+
+      <div class="contact-layout">
+
+        <div class="contact-info">
+          <h2>Contact Information</h2>
+          <div class="contact-detail">
+            <span class="contact-detail-icon">📞</span>
+            <div>
+              <strong>Phone</strong><br>
+              <a href="tel:{{ .Site.Params.contact_phone }}">{{ .Site.Params.contact_phone }}</a>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <span class="contact-detail-icon">✉️</span>
+            <div>
+              <strong>Email</strong><br>
+              <a href="mailto:{{ .Site.Params.contact_email }}">{{ .Site.Params.contact_email }}</a>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <span class="contact-detail-icon">📍</span>
+            <div>
+              <strong>Address</strong><br>
+              {{ .Site.Params.contact_address }}
+            </div>
+          </div>
+
+          <div class="trust-signals">
+            <h4>Brands We Distribute</h4>
+            <div class="trust-logos">
+              <img src="/images/brands/tr-equipment-logo.png" alt="TR Equipment" onerror="this.style.display='none'">
+              <img src="/images/brands/staminalift-logo.avif" alt="StaminaLift" style="filter:brightness(0);" onerror="this.style.display='none'">
+              <img src="/images/brands/rebotec-logo.png" alt="Rebotec" onerror="this.style.display='none'">
+            </div>
+            <p style="margin-top:16px;font-size:0.85rem;color:var(--color-text-muted);">Exclusive North American distributor for TR Equipment, DHG (Bure Walkers), StaminaLift, and Rebotec.</p>
+          </div>
+        </div>
+
+        <div class="contact-form">
+          <form action="https://formspree.io/f/{{ .Site.Params.formspree_id }}" method="POST">
+            <input type="hidden" name="_subject" value="TR Group Inc. — Dealer Inquiry">
+            <input type="text" name="_gotcha" style="display:none">
+
+            <div class="form-group">
+              <label for="name">Full Name *</label>
+              <input type="text" id="name" name="name" required placeholder="Your name">
+            </div>
+
+            <div class="form-group">
+              <label for="inquiry">I am looking to... *</label>
+              <select id="inquiry" name="inquiry" required>
+                <option value="">— Select one —</option>
+                <option value="find-dealer">Find an authorized dealer in my area</option>
+                <option value="become-dealer">Become an authorized dealer partner</option>
+                <option value="product-info">Get product information</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="organization">Organization / Company</label>
+              <input type="text" id="organization" name="organization" placeholder="Your organization or company name">
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" name="email" required placeholder="your@email.com">
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="(555) 000-0000">
+            </div>
+
+            <div class="form-group">
+              <label for="product_interest">Product Category of Interest</label>
+              <select id="product_interest" name="product_interest">
+                <option value="">— Select a category —</option>
+                <option value="Shower Trolleys">Shower Trolleys</option>
+                <option value="Shower Chairs">Shower Chairs &amp; Accessories</option>
+                <option value="Bathing Systems">Bathing Systems</option>
+                <option value="Patient Lifts">Patient Lifts</option>
+                <option value="Patient Transport">Patient Transport (StaminaLift)</option>
+                <option value="Walkers">Walkers &amp; Gait Trainers</option>
+                <option value="Rebotec">Rebotec Products</option>
+                <option value="Multiple / Not sure">Multiple / Not sure yet</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Tell us how we can help…"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width:100%;font-size:1rem;padding:14px;">Send Message</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ end }}

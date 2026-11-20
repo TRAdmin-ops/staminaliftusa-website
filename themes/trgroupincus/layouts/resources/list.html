@@ -1,0 +1,51 @@
+{{ define "main" }}
+
+<section class="page-hero">
+  <div class="container">
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p class="page-hero-sub">{{ . }}</p>{{ end }}
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    {{ with .Content }}<div class="page-content prose" style="margin-bottom:48px;">{{ . }}</div>{{ end }}
+
+    <div class="resources-grid">
+      <!-- Pillar page always first -->
+      <a class="resource-card" href="/resources/patient-hygiene-equipment-guide/" style="border-color:var(--color-primary);background:var(--color-primary-light);">
+        <span class="resource-card-type">Buyer's Guide — Featured</span>
+        <h3>Patient Hygiene Equipment: A Complete Buyer's Guide for Healthcare Facilities</h3>
+        <p>Our comprehensive guide to shower trolleys, bathing systems, patient lifts, standing aids, and walkers — how to specify the right equipment for your facility and patient population.</p>
+        <span class="resource-card-cta">Read the guide &rarr;</span>
+      </a>
+
+      {{ range .Pages }}
+      {{ if ne .Title "Articles & White Papers" }}
+      <a class="resource-card" href="{{ .RelPermalink }}">
+        <span class="resource-card-type">{{ with .Params.type }}{{ . }}{{ else }}Resource{{ end }}</span>
+        <h3>{{ .Title }}</h3>
+        {{ with .Description }}<p>{{ . }}</p>{{ else }}{{ with .Summary }}<p>{{ . | truncate 140 }}</p>{{ end }}{{ end }}
+        <span class="resource-card-cta">Read more &rarr;</span>
+      </a>
+      {{ end }}
+      {{ end }}
+
+      <a class="resource-card" href="/resources/articles/">
+        <span class="resource-card-type">Articles &amp; White Papers</span>
+        <h3>Articles &amp; White Papers</h3>
+        <p>In-depth articles on safe patient handling, bariatric care equipment, bathing system selection, and infection control in patient hygiene environments. More coming soon.</p>
+        <span class="resource-card-cta">Browse articles &rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="cta-strip">
+  <div class="container">
+    <p>Have a specific question about equipment for your facility? <strong>We're happy to help.</strong></p>
+    <a href="/contact/" class="btn btn-white">Contact Us</a>
+  </div>
+</section>
+
+{{ end }}

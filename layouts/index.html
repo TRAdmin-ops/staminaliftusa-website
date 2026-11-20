@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ .Title }}</title>
+  <meta name="description" content="{{ .Description }}">
+  <link rel="canonical" href="{{ .Permalink }}">
+  {{ if .Params.noindex }}<meta name="robots" content="noindex">{{ end }}
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YZFSG55JT3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-YZFSG55JT3');
+    gtag('config', 'AW-17076605125');
+  </script>
+</head>
+<body>
+
+  <header class="lp-header">
+    <a class="lp-logo" href="/">
+      <div class="lp-logo-text">
+        StaminaLift USA<span>Powered Patient Transport</span>
+      </div>
+    </a>
+    <div class="lp-header-right">
+      <a class="lp-header-phone" href="mailto:{{ .Site.Params.contact_email }}">{{ .Site.Params.contact_email }}</a>
+      <a class="lp-header-cta" href="#inquiry-form">{{ .Params.header_cta_text | default "Let's Get You Equipped" }}</a>
+    </div>
+  </header>
+
+  <section class="lp-hero{{ if eq .Params.form_position "bottom" }} lp-hero-no-form{{ end }}">
+    <div class="lp-hero-copy">
+      {{ with .Params.hero_eyebrow }}<p class="lp-eyebrow">{{ . }}</p>{{ end }}
+      <h1>{{ .Params.hero_headline }}</h1>
+      {{ with .Params.product_image }}
+      <img class="lp-hero-product-img" src="{{ . }}" alt="{{ $.Params.product_image_alt | default "Product image" }}" loading="lazy">
+      {{ end }}
+      {{ with .Params.product_images }}
+      <div class="lp-hero-product-row">
+        {{ range . }}
+        <div class="lp-hero-product-row-item">
+          <img src="{{ .src }}" alt="{{ .alt }}" loading="lazy">
+          <p>{{ .caption }}</p>
+        </div>
+        {{ end }}
+      </div>
+      {{ end }}
+      <p class="lp-hero-sub">{{ .Params.hero_subheadline }}</p>
+      <div class="lp-hero-options">
+        {{ with .Params.hero_bullets }}
+        <ul class="lp-bullets">
+          {{ range . }}<li>{{ . }}</li>{{ end }}
+        </ul>
+        {{ end }}
+        {{ if or .Params.ecommerce_partner_label .Params.dealer_partner_label .Params.additional_partner_label }}
+        <div class="lp-partner-choice">
+          <p class="lp-partner-choice-label">Choose your purchasing path</p>
+          <div class="lp-partner-actions" aria-label="Distributor partner options">
+            {{ with .Params.ecommerce_partner_label }}
+            {{ $ecommerceUrl := $.Params.ecommerce_partner_url | default "#inquiry-form" }}
+            <a class="lp-partner-btn lp-partner-btn-primary" href="{{ $ecommerceUrl }}" data-lp-conversion="ecommerce_partner_click" data-lp-conversion-send-to="{{ $.Params.ecommerce_partner_conversion_send_to | default $.Site.Params.google_ads_partner_conversion_send_to }}" {{ if hasPrefix $ecommerceUrl "http" }}target="_blank" rel="noopener noreferrer"{{ end }}>{{ . }}</a>
+            {{ end }}
+            {{ with .Params.dealer_partner_label }}
+            {{ $dealerUrl := $.Params.dealer_partner_url | default "#inquiry-form" }}
+            <a class="lp-partner-btn lp-partner-btn-secondary" href="{{ $dealerUrl }}" data-lp-conversion="dealer_partner_click" data-lp-conversion-send-to="{{ $.Params.dealer_partner_conversion_send_to | default $.Site.Params.google_ads_partner_conversion_send_to }}" {{ if hasPrefix $dealerUrl "http" }}target="_blank" rel="noopener noreferrer"{{ end }}>{{ . }}</a>
+            {{ end }}
+            {{ with .Params.additional_partner_label }}
+            {{ $additionalUrl := $.Params.additional_partner_url | default "#inquiry-form" }}
+            <a class="lp-partner-btn lp-partner-btn-secondary" href="{{ $additionalUrl }}" data-lp-conversion="additional_partner_click" data-lp-conversion-send-to="{{ $.Params.additional_partner_conversion_send_to | default $.Site.Params.google_ads_partner_conversion_send_to }}" {{ if hasPrefix $additionalUrl "http" }}target="_blank" rel="noopener noreferrer"{{ end }}>{{ . }}</a>
+            {{ end }}
+          </div>
+        </div>
+        {{ end }}
+      </div>
+      <p class="lp-trust">StaminaLift USA provides North American product support through authorized distributor partners.</p>
+    </div>
+
+    {{ if ne .Params.form_position "bottom" }}
+      {{ template "lp-inquiry-form" . }}
+    {{ end }}
+  </section>
+
+  <div class="lp-body">
+    {{ .Content }}
+  </div>
+
+  {{ if eq .Params.form_position "bottom" }}
+  <section class="lp-bottom-form-section">
+    <div class="lp-bottom-form-wrap">
+      {{ template "lp-inquiry-form" . }}
+    </div>
+  </section>
+  {{ else }}
+  <section class="lp-final-cta">
+    <h2>Need help selecting {{ .Params.final_cta_product | default "the right equipment" }}?</h2>
+    <p>{{ .Params.final_cta_copy | default "We can help route your inquiry to an authorized distributor based on your product needs and location." }}</p>
+    <a href="#inquiry-form" class="btn-lp">{{ .Params.header_cta_text | default "Let's Get You Equipped" }}</a>
+  </section>
+  {{ end }}
+
+  <footer class="lp-footer">
+    <span>&copy; {{ now.Year }} StaminaLift USA. All rights reserved.</span>
+    <span>
+      <a href="/privacy-policy/">Privacy Policy</a> &nbsp;&bull;&nbsp;
+      <a href="#inquiry-form">Contact</a>
+    </span>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var form = document.querySelector('#inquiry-form form');
+      if (form) {
+        form.addEventListener('submit', function() {
+          gtag('event', 'lp_form_submit', {
+            'event_category': 'lead',
+            'event_label': '{{ .Params.product_interest | default .Title }}'
+          });
+        });
+      }
+
+      function trackLandingPageClick(link) {
+        var eventName = link.getAttribute('data-lp-conversion');
+        var sendTo = link.getAttribute('data-lp-conversion-send-to');
+        if (!eventName) return;
+
+        var eventParams = {
+          'event_category': 'lead_intent',
+          'event_label': link.textContent.trim(),
+          'link_url': link.href
+        };
+
+        gtag('event', eventName, eventParams);
+
+        if (sendTo) {
+          gtag('event', 'conversion', {
+            'send_to': sendTo,
+            'event_callback': function() {
+              if (link.target === '_blank') return;
+              if (link.href && link.href.indexOf('#') === -1) {
+                window.location = link.href;
+              }
+            }
+          });
+        }
+      }
+
+      document.querySelectorAll('[data-lp-conversion]').forEach(function(link) {
+        link.addEventListener('click', function(event) {
+          var sendTo = link.getAttribute('data-lp-conversion-send-to');
+          if (sendTo && link.target !== '_blank' && link.href && link.href.indexOf('#') === -1) {
+            event.preventDefault();
+            setTimeout(function() { window.location = link.href; }, 500);
+          }
+          trackLandingPageClick(link);
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
+
+{{ define "lp-inquiry-form" }}
+<div class="lp-form-card" id="inquiry-form">
+  <h2>{{ .Params.form_heading | default "Let's Get You Equipped" }}</h2>
+  <p class="lp-form-intro">{{ .Params.form_intro | default "Tell us what you need and where you're located. We'll route your inquiry to the right distributor." }}</p>
+  <form action="https://formspree.io/f/{{ .Site.Params.formspree_id }}" method="POST">
+    <input type="hidden" name="_subject" value="{{ .Params.form_subject }}">
+    <input type="hidden" name="_next" value="{{ absURL "lp/thank-you/" }}?product={{ .Params.product_interest | default .Title | urlquery }}">
+    <input type="hidden" name="product_interest" value="{{ .Params.product_interest }}">
+    <input type="text" name="_gotcha" style="display:none">
+
+    <div class="form-group">
+      <label for="lp-request-type">What do you need? *</label>
+      <select id="lp-request-type" name="request_type" required>
+        <option value="">Select one</option>
+        <option>Get price / quote</option>
+        <option>Order or purchasing help</option>
+        <option>Compare models</option>
+        <option>Find an authorized distributor</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="lp-name">Full Name *</label>
+      <input type="text" id="lp-name" name="name" required placeholder="Your name">
+    </div>
+    <div class="form-group">
+      <label for="lp-org">Organization / Facility</label>
+      <input type="text" id="lp-org" name="organization" placeholder="Hospital, clinic, facility name">
+    </div>
+    <div class="form-group">
+      <label for="lp-state">State *</label>
+      <select id="lp-state" name="state" required>
+        <option value="">Select state</option>
+        <option>Alabama</option><option>Alaska</option><option>Arizona</option>
+        <option>Arkansas</option><option>California</option><option>Colorado</option>
+        <option>Connecticut</option><option>Delaware</option><option>Florida</option>
+        <option>Georgia</option><option>Hawaii</option><option>Idaho</option>
+        <option>Illinois</option><option>Indiana</option><option>Iowa</option>
+        <option>Kansas</option><option>Kentucky</option><option>Louisiana</option>
+        <option>Maine</option><option>Maryland</option><option>Massachusetts</option>
+        <option>Michigan</option><option>Minnesota</option><option>Mississippi</option>
+        <option>Missouri</option><option>Montana</option><option>Nebraska</option>
+        <option>Nevada</option><option>New Hampshire</option><option>New Jersey</option>
+        <option>New Mexico</option><option>New York</option><option>North Carolina</option>
+        <option>North Dakota</option><option>Ohio</option><option>Oklahoma</option>
+        <option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option>
+        <option>South Carolina</option><option>South Dakota</option><option>Tennessee</option>
+        <option>Texas</option><option>Utah</option><option>Vermont</option>
+        <option>Virginia</option><option>Washington</option><option>West Virginia</option>
+        <option>Wisconsin</option><option>Wyoming</option>
+        <option>Washington D.C.</option><option>Puerto Rico</option><option>Canada</option><option>Other</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="lp-email">Email *</label>
+      <input type="email" id="lp-email" name="email" required placeholder="your@email.com">
+    </div>
+    <div class="form-group">
+      <label for="lp-phone">Phone</label>
+      <input type="tel" id="lp-phone" name="phone" placeholder="(555) 000-0000">
+    </div>
+    <div class="form-group">
+      <label for="lp-purchasing-for">Purchasing For *</label>
+      <select id="lp-purchasing-for" name="purchasing_for" required>
+        <option value="">Select one</option>
+        <option>Facility (hospital, SNF, rehab center)</option>
+        <option>Home Care</option>
+        <option>Dealer or Distributor</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="lp-notes">Notes</label>
+      <textarea id="lp-notes" name="notes" placeholder="{{ .Params.form_notes_placeholder | default "Model, quantity, patient weight range, care setting, timeline, or questions" }}"></textarea>
+    </div>
+
+    <button type="submit" class="lp-form-submit">{{ .Params.form_submit | default "Send My Inquiry" }}</button>
+  </form>
+  <p class="lp-form-note">{{ .Params.form_note | default "StaminaLift routes purchasing through authorized distributor partners across North America." }}</p>
+</div>
+{{ end }}
