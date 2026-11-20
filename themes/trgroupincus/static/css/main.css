@@ -1595,3 +1595,20 @@ img { max-width: 100%; height: auto; display: block; }
 .lp-final-cta .btn-lp { background: #e6b56a; color: #0b2530; border-radius: 2px; }
 @media (max-width: 760px) { .lp-proof-strip, .lp-case-grid, .lp-manufacturer-grid { grid-template-columns: 1fr 1fr; } .lp-proof-strip div:nth-child(2) { border-right: 0; } .lp-proof-strip div { padding: 12px 14px; } .lp-case-study { margin-left: -20px; margin-right: -20px; padding-left: 20px; padding-right: 20px; } }
 @media (max-width: 520px) { .lp-proof-strip, .lp-case-grid, .lp-manufacturer-grid { grid-template-columns: 1fr; } .lp-proof-strip div { border-right: 0; border-bottom: 1px solid #d7e5df; } .lp-proof-strip div:last-child { border-bottom: 0; } .lp-header-right { gap: 8px; } }
+.lp-transport-section { padding-top: 38px; }
+.lp-transport-grid, .lp-accessory-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 28px; }
+.lp-transport-grid > div { min-height: 160px; background: #f3f8f5; border: 1px solid #d6e5de; border-top: 3px solid #2d9990; border-radius: 3px; padding: 20px; }
+.lp-transport-grid strong { color: #173e43; font-size: 15px; }
+.lp-transport-grid p { color: #61746f; font-size: 13px; line-height: 1.6; }
+.lp-compatibility-note { margin-top: 24px; display: flex; gap: 18px; align-items: baseline; padding: 18px 20px; border-left: 4px solid #e6b56a; background: #fffaf1; }
+.lp-compatibility-note strong { color: #173e43; font-size: 14px; white-space: nowrap; }
+.lp-compatibility-note span { color: #6b756d; font-size: 13px; line-height: 1.55; }
+.lp-accessories-section { background: #f8faf8; margin-left: -32px; margin-right: -32px; padding-left: 32px; padding-right: 32px; }
+.lp-accessory-grid { grid-template-columns: repeat(3, 1fr); }
+.lp-accessory-grid > div { background: #fff; border: 1px solid #d6e3dd; padding: 20px; min-height: 190px; }
+.lp-accessory-code { display: block; color: #0e766f; font: 10px var(--font-family); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 10px; }
+.lp-accessory-grid strong { display: block; color: #173e43; font-size: 15px; line-height: 1.35; }
+.lp-accessory-grid p { color: #61746f; font-size: 13px; line-height: 1.6; }
+.lp-literature-link { display: inline-flex; gap: 12px; margin-top: 28px; color: #0e766f; font-size: 13px; font-weight: 800; text-decoration: underline; }
+@media (max-width: 900px) { .lp-transport-grid, .lp-accessory-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .lp-transport-grid, .lp-accessory-grid { grid-template-columns: 1fr; } .lp-compatibility-note { display: block; } .lp-compatibility-note span { display: block; margin-top: 8px; } .lp-accessories-section { margin-left: -20px; margin-right: -20px; padding-left: 20px; padding-right: 20px; } }
