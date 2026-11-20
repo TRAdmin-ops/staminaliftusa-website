@@ -1604,7 +1604,7 @@ img { max-width: 100%; height: auto; display: block; }
 .lp-compatibility-note strong { color: #173e43; font-size: 14px; white-space: nowrap; }
 .lp-compatibility-note span { color: #6b756d; font-size: 13px; line-height: 1.55; }
 .lp-accessories-section { background: #f8faf8; margin-left: -32px; margin-right: -32px; padding-left: 32px; padding-right: 32px; }
-.lp-accessory-grid { grid-template-columns: repeat(3, 1fr); }
+.lp-accessory-grid { grid-template-columns: repeat(3, 1fr); gap: 26px; }
 .lp-accessory-grid > div { background: #fff; border: 1px solid #d6e3dd; padding: 20px; min-height: 190px; }
 .lp-accessory-grid > div { background-repeat: no-repeat; background-position: 20px 20px; background-size: 88px 88px; padding-left: 126px; min-height: 128px; }
 .lp-accessory-grid > div:nth-child(1) { background-image: url('/images/accessories/lithium-upgrade-kit.png'); }
@@ -1615,6 +1615,7 @@ img { max-width: 100%; height: auto; display: block; }
 .lp-accessory-grid > div:nth-child(6) { background-image: url('/images/accessories/seat.png'); }
 .lp-accessory-grid > div:nth-child(7) { background-image: url('/images/accessories/strobe-lights.png'); }
 .lp-accessory-grid > div:nth-child(8) { background-image: url('/images/accessories/buzzer-pulsating-warning-signal.png'); }
+.lp-accessory-code { display: none; }
 .lp-accessory-code { display: block; color: #0e766f; font: 10px var(--font-family); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 10px; }
 .lp-accessory-grid strong { display: block; color: #173e43; font-size: 15px; line-height: 1.35; }
 .lp-accessory-grid p { color: #61746f; font-size: 13px; line-height: 1.6; }
